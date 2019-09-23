@@ -1,0 +1,26 @@
+{
+  "name": "a-to-z-experiences-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Warriors140/A-to-Z-Experiences-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Warriors140/A-to-Z-Experiences-Backend/issues"
+  },
+  "homepage": "https://github.com/Warriors140/A-to-Z-Experiences-Backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.19.4",
+    "nodemon": "^1.19.2",
+    "sqlite": "^3.0.3"
+  }
+}
