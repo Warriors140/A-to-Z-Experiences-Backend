@@ -1,16 +1,20 @@
 const express = require('express');
 const server = express();
+const cors = require('cors');
+const helmet = require('helmet');
+require('dotenv').config();
 
-const usersrouter = require('./users/users-router');
+const usersRouter = require('./users/users-router');
 
 server.use(express.json());
+server.use(helmet());
+server.use(cors());
 
-server.use('/api/users', usersrouter);
+server.use('/api/users', usersRouter);
 
 server.get('/', (req, res) => {
   res.send(`
     <h2>Hello World</h2>
-		
   `);
 });
 

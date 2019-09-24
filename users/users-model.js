@@ -22,12 +22,12 @@ function findBy(filter) {
 // }
 
 function add(user) {
-    return db("users")
-      .returning("id")
+    return db('users')
       .insert(user)
       .then(ids => {
         const [id] = ids;
-        return fetchById(id);
+        console.log('ids', id)
+        return findById(id);
       });
   }
   
