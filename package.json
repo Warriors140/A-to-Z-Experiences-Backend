@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Warriors140/A-to-Z-Experiences-Backend#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.4",
     "nodemon": "^1.19.2",
     "sqlite": "^3.0.3"
