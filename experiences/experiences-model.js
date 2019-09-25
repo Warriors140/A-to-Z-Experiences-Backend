@@ -29,17 +29,6 @@ function add(experience) {
       });
 }
 
-function update(changes, id) {
-    return db('experiences')
-        .where({ id })
-        .update(changes)
-        .then(count => findById(id))
-}
 
-async function remove(id) {
-    const experience = await findById(id);
-    const count = await db('experiences').where({ id }).del();
-    return count ? experience : null;
-}
 
 

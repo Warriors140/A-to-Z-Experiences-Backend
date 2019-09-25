@@ -63,53 +63,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const changes = req.body;
-
-  Experiences.update(changes, id)
-    .then(updatedExperience => {
-      if (updatedExperience) {
-        res.json({
-          message: `Successly updated experience with id of ${id}`,
-          updatedExperience
-        });
-      } else {
-        res.status(404).json({
-          message: 'Could not find experience with given id'
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({
-        message: 'Failed to update experience'
-      });
-    });
-});
-
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-
-  Experiences.remove(id)
-    .then(removedExperience => {
-  
-      if (removedExperience) {
-        res.json({
-          message: `Successfully removed experience with id of ${id}`,
-          removedExperience
-        });
-      } else {
-        res.status(404).json({
-          message: 'Could not find experience with given id'
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({
-        message: 'Failed to delete experience'
-      });
-    });
-});
 
 
 
