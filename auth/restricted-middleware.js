@@ -9,11 +9,8 @@ module.exports = (req, res, next) => {
         } else if (!user.password) {
             res.status(400).json({message: 'Password required'})
             return
-        } else if (!user.firstname) {
-            res.status(400).json({message: 'Please add first name'})
-            return
-        } else if (!user.lastname) {
-            res.status(400).json({message: 'Please add last name'})
+        } else if (!user.name) {
+            res.status(400).json({message: 'Please add first and last name'})
             return
         } else if (!user.email) {
             res.status(400).json({message: 'Email required'})
