@@ -4,9 +4,6 @@ module.exports = {
     add,
     find,
     findById,
-    update,
-    remove,
-    // findExperiences
 };
 
 function find() {
