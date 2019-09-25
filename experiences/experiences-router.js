@@ -63,7 +63,47 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.put('/:id',  validateExperienceId, (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    db.update(id, changes)
+        .then(experience => {
+            res.status(204).json({message: `experience ${id} succesfully updated`})
+        })
+        .catch(err => {
+            req.status(500).json({error: 'server error, did not update experience'})
+        })
+});
 
+router.delete('/:id',  validateExperienceId, (req, res) => {
+    const id = req.params.id;
+    db.remove(id)
+        .then(experience => {
+            res.status(204).json({message: `successfully deleted experience ${id}`})
+        })
+        .catch(err => {
+            res.status(500).json({error: 'server error, did not delete experience'})
+        })
+});
+
+//custom middleware
+
+function validateExperienceId(req, res, next) {
+    const id = req.params.id;
+    db.findById(id)
+        .then(experience => {
+            if (experience) {
+                req.experience = experience;
+                next();
+            }
+            else {
+                res.status(400).json({message: 'invalid id'});
+            }
+        })
+        .catch (err => {
+            res.status(500).json({error: 'There was an error accessing that experience from the database.'})
+        })
+};
 
 
 module.exports = router;

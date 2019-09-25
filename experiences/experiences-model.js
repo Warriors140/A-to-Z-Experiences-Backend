@@ -4,6 +4,8 @@ module.exports = {
     add,
     find,
     findById,
+    update,
+    remove
 };
 
 function find() {
@@ -26,6 +28,18 @@ function add(experience) {
       });
 }
 
+function update(id, changes) {
+    return db('experiences')
+      .where({ id })
+      .update(changes);
+}
+
+function remove(id) {
+    return db('experiences')
+      .where('id', id)
+      .del();
+  }
+  
 
 
 
