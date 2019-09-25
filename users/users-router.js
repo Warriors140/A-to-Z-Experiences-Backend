@@ -49,15 +49,16 @@ function generateToken(user) {
   const payload = {
     subjust: user.id, // subject in payload
     username: user.username,
-    firstname: user.firstname,
-    lastname: user.lastname,
+    name: user.name,
+    // lastname: user.lastname,
     email: user.email
   };
 
   const options = {
     expiresIn: '1d'
   };
-  return jwt.sign(payload, process.env.SECRET, options);
+  const secret = process.env.SECRET || "this is a secret";
+  return jwt.sign(payload, secret, options);
 }
 
 module.exports = router;
