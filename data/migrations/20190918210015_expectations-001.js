@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', users => {
       users.increments();
-      users.string('username', 255).notNullable().unique();
+      users.string('username', 255).notNullable();
       users.string('password', 255).notNullable();
       users.string('name', 100).notNullable();
       users.string('email', 255);  
@@ -15,6 +15,7 @@ exports.up = function(knex) {
     experiences.integer('cost', 100)
     // experiences.integer('user_id')
     //   .unsigned()
+    //   .notNullable()
     //   .references('id')
     //   .inTable('users')
     //   .onUpdate('CASCADE')

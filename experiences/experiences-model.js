@@ -6,7 +6,7 @@ module.exports = {
     findById,
     update,
     remove,
-    findExperiences
+    // findExperiences
 };
 
 function find() {
@@ -42,10 +42,4 @@ async function remove(id) {
     return count ? experience : null;
 }
 
-function findExperiences(user_id) {
-    return db('experiences')
-        .join('users', 'users.id', 'experiences.user_id')
-        .select('experiences.id', 'experiences.name', 'users.username')
-        .where({ user_id });
-}
 
