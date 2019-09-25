@@ -14,7 +14,7 @@ router.post('/register', authenticated, (req, res) => {
     const token = generateToken(saved)
     console.log("saved", saved)
       res.status(201).json({
-        user,
+        registeredUser: saved,
         token
       });
     })
@@ -43,6 +43,96 @@ router.post('/login', (req, res) => {
     .catch(error => {
       res.status(500).json(error);
     });
+});
+
+router.get('/', (req, res) => {
+  Users.find()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Failed to get users'
+      });
+    });
+});
+
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  Users.findById(id)
+    .then(user => {
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({
+          message: 'Could not find user with given id.'
+        })
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Failed to get user'
+      });
+    });
+});
+
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  Users.findById(id)
+    .then(user => {
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({
+          message: 'Could not find user with given id.'
+        })
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Failed to get user'
+      });
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+
+  Users.remove(id)
+    .then(count => {
+      if (count) {
+        res.json({
+          removed: count
+        });
+      } else {
+        res.status(404).json({
+          message: 'Could not find user with given id'
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Failed to delete user'
+      });
+    });
+});
+
+// all experiences by user id
+router.get('/:id/experiences', (req, res) => {
+  const { id } = req.params;
+  console.log('id', id)
+  Users.findExperiences(id)
+    .then(experiences => {
+      res.json(experiences);
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'failed to get experiences'
+      });
+    });
+
 });
 
 function generateToken(user) {
