@@ -38,7 +38,7 @@ function remove(id) {
     return db('experiences')
       .where('id', id)
       .del();
-  }
+}
   
 
 
